@@ -31,7 +31,7 @@ build-push:
 run27:
 	docker exec master-stable27-1 sudo -u www-data php occ app_api:app:unregister skeleton --silent --force || true
 	docker exec master-stable27-1 sudo -u www-data php occ app_api:app:register skeleton --force-scopes \
-		--info-xml https://raw.githubusercontent.com/cloud-py-api/nc_py_api/main/examples/as_app/skeleton/appinfo/info.xml
+		--info-xml https://raw.githubusercontent.com/cloud-py-api/app-skeleton-python/main/appinfo/info.xml
 
 .PHONY: run28
 run28:
