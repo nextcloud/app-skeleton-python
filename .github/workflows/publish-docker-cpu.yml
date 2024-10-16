@@ -6,7 +6,7 @@ on:
 jobs:
   push_to_registry:
     name: Build image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     if: ${{ github.repository_owner == 'nextcloud' }}
     permissions:
       packages: write
