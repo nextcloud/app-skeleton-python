@@ -1,6 +1,8 @@
 """Simplest example."""
 
+import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI
 from nc_py_api import NextcloudApp
@@ -32,4 +34,5 @@ def enabled_handler(enabled: bool, nc: NextcloudApp) -> str:
 if __name__ == "__main__":
     # Wrapper around `uvicorn.run`.
     # You are free to call it directly, with just using the `APP_HOST` and `APP_PORT` variables from the environment.
+    os.chdir(Path(__file__).parent)
     run_app("main:APP", log_level="trace")
