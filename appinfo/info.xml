@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <info>
-	<id>skeleton</id>
+	<id>app-skeleton-python</id>
 	<name>App Skeleton</name>
 	<summary>Nextcloud Python Application Skeleton</summary>
 	<description>
@@ -20,7 +20,7 @@
 	<external-app>
 		<docker-install>
 			<registry>ghcr.io</registry>
-			<image>nextcloud/skeleton</image>
+			<image>nextcloud/app-skeleton-python</image>
 			<image-tag>latest</image-tag>
 		</docker-install>
 	</external-app>
