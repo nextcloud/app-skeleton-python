@@ -8,23 +8,25 @@ JSON_INFO := "{\"id\":\"$(APP_ID)\",\"name\":\"$(APP_NAME)\",\"daemon_config_nam
 
 .PHONY: help
 help:
-	@echo "Welcome to Skeleton example. Please use \`make <target>\` where <target> is one of"
+	@echo "  Welcome to $(APP_NAME) $(APP_VERSION)!"
 	@echo " "
-	@echo "  Next commands are only for dev environment with nextcloud-docker-dev!"
-	@echo "  They should run from the host you are developing on(with activated venv) and not in the container with Nextcloud!"
-	@echo "  "
-	@echo "  build-push        build image and upload to ghcr.io"
-	@echo "  "
-	@echo "  run29             install Skeleton for Nextcloud 29"
-	@echo "  run30             install Skeleton for Nextcloud 30"
-	@echo "  run               install Skeleton for Nextcloud Last"
-	@echo "  "
-	@echo "  For development of this example use PyCharm run configurations. Development is always set for last Nextcloud."
-	@echo "  First run 'Skeleton' and then 'make registerXX', after that you can use/debug/develop it and easy test."
-	@echo "  "
-	@echo "  register29        perform registration of running Skeleton into the 'manual_install' deploy daemon."
-	@echo "  register30        perform registration of running Skeleton into the 'manual_install' deploy daemon."
-	@echo "  register          perform registration of running Skeleton into the 'manual_install' deploy daemon."
+	@echo "  Please use \`make <target>\` where <target> is one of"
+	@echo " "
+	@echo "  build-push        builds CPU images and uploads them to ghcr.io"
+	@echo " "
+	@echo "  > Next commands are only for the dev environment with nextcloud-docker-dev!"
+	@echo "  > They must be run from the host you are developing on, not in a Nextcloud container!"
+	@echo " "
+	@echo "  run29             installs $(APP_NAME) for Nextcloud 29"
+	@echo "  run30             installs $(APP_NAME) for Nextcloud 30"
+	@echo "  run               installs $(APP_NAME) for Nextcloud Latest"
+	@echo " "
+	@echo "  > Commands for manual registration of ExApp($(APP_NAME) should be running!):"
+	@echo " "
+	@echo "  register29        performs registration of running $(APP_NAME) into the 'manual_install' deploy daemon."
+	@echo "  register30        performs registration of running $(APP_NAME) into the 'manual_install' deploy daemon."
+	@echo "  register          performs registration of running $(APP_NAME) into the 'manual_install' deploy daemon."
+
 
 .PHONY: build-push
 build-push:
