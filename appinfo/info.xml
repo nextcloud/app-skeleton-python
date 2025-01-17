@@ -23,5 +23,18 @@
 			<image>nextcloud/app-skeleton-python</image>
 			<image-tag>latest</image-tag>
 		</docker-install>
+		<environment-variables>
+			<variable>
+				<name>TEST_ENV_1</name>
+				<display-name>Test environment with default value</display-name>
+				<description>Test environment with default value</description>
+				<default>0</default>
+			</variable>
+			<variable>
+				<name>TEST_ENV_2</name>
+				<display-name>Test environment without default value</display-name>
+				<description>Test environment without default value</description>
+			</variable>
+		</environment-variables>
 	</external-app>
 </info>
