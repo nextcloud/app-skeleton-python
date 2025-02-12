@@ -6,7 +6,7 @@
 	<description>
 	<![CDATA[Simplest skeleton of the Nextcloud application written in python]]>
 	</description>
-	<version>2.0.0</version>
+	<version>3.0.0</version>
 	<licence>MIT</licence>
 	<author mail="bigcat88@icloud.com" homepage="https://github.com/bigcat88">Alexander Piskun</author>
 	<namespace>PyAppV2_skeleton</namespace>
@@ -15,7 +15,7 @@
 	<bugs>https://github.com/nextcloud/app-skeleton-python/issues</bugs>
 	<repository type="git">https://github.com/nextcloud/app-skeleton-python</repository>
 	<dependencies>
-		<nextcloud min-version="29" max-version="31"/>
+		<nextcloud min-version="29" max-version="32"/>
 	</dependencies>
 	<external-app>
 		<docker-install>
@@ -36,5 +36,32 @@
 				<description>Test environment without default value</description>
 			</variable>
 		</environment-variables>
+		<routes>
+			<route>
+				<url>^/public$</url>
+				<verb>GET</verb>
+				<access_level>PUBLIC</access_level>
+			</route>
+			<route>
+				<url>^/user$</url>
+				<verb>GET</verb>
+				<access_level>USER</access_level>
+			</route>
+			<route>
+				<url>^/admin$</url>
+				<verb>GET</verb>
+				<access_level>ADMIN</access_level>
+			</route>
+			<route>
+				<url>^/$</url>
+				<verb>GET</verb>
+				<access_level>USER</access_level>
+			</route>
+			<route>
+				<url>^/ws$</url>
+				<verb>GET</verb>
+				<access_level>USER</access_level>
+			</route>
+		</routes>
 	</external-app>
 </info>
