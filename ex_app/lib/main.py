@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, Request, WebSocket
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from nc_py_api import NextcloudApp
 from nc_py_api.ex_app import AppAPIAuthMiddleware, LogLvl, nc_app, run_app, set_handlers
 
@@ -77,9 +77,9 @@ async def public_get(request: Request):
 
 
 @APP.get("/user")
-async def user_get(request: Request):
+async def user_get(request: Request, status: int = 200):
     print(f"user_get: {request.headers}", flush=True)
-    return "Page for the registered users only!"
+    return JSONResponse(content="Page for the registered users only!", status_code=status)
 
 
 @APP.get("/admin")
