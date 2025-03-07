@@ -1,4 +1,7 @@
 #!/bin/bash
+# SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 set -e
 
 # Only create a config file if HP_SHARED_KEY is set.
@@ -19,11 +22,12 @@ transport.tls.serverName = "harp.nc"
 metadatas.token = "$HP_SHARED_KEY"
 
 [[proxies]]
-name = "$APP_ID"
-type = "tcp"
-localIP = "127.0.0.1"
-localPort = $APP_PORT
 remotePort = $APP_PORT
+type = "tcp"
+name = "$APP_ID"
+[proxies.plugin]
+type = "unix_domain_socket"
+unixPath = "/tmp/exapp.sock"
 EOF
     else
         echo "Directory /certs/frp not found. Creating configuration without TLS certificates."
@@ -36,11 +40,12 @@ transport.tls.enable = false
 metadatas.token = "$HP_SHARED_KEY"
 
 [[proxies]]
-name = "$APP_ID"
-type = "tcp"
-localIP = "127.0.0.1"
-localPort = $APP_PORT
 remotePort = $APP_PORT
+type = "tcp"
+name = "$APP_ID"
+[proxies.plugin]
+type = "unix_domain_socket"
+unixPath = "/tmp/exapp.sock"
 EOF
     fi
 else
@@ -53,6 +58,6 @@ if [ -f /frpc.toml ] && [ -n "$HP_SHARED_KEY" ]; then
     frpc -c /frpc.toml &
 fi
 
-# Start the main Python application
+# Start the main application (adjust it for your ExApp)
 echo "Starting main application..."
 exec python3 main.py
