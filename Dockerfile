@@ -10,18 +10,7 @@ RUN apt-get update && apt-get install -y curl && \
 # Copy requirements and install Python dependencies using a cache mount.
 COPY requirements.txt /
 RUN --mount=type=cache,target=/root/.cache/pip \
-    python3 -m pip install -r requirements.txt && rm requirements.txt
-
-# Add application files (using your ADD patterns)
-ADD /ex_app/cs[s] /ex_app/css
-ADD /ex_app/im[g] /ex_app/img
-ADD /ex_app/j[s] /ex_app/js
-ADD /ex_app/l10[n] /ex_app/l10n
-ADD /ex_app/li[b] /ex_app/lib
-
-# Copy scripts with the proper permissions.
-COPY --chmod=775 healthcheck.sh /
-COPY --chmod=775 start.sh /
+    python3 -m pip install --root-user-action=ignore -r requirements.txt && rm requirements.txt
 
 # Download and install FRP client into /usr/local/bin.
 RUN set -ex; \
@@ -44,16 +33,23 @@ RUN set -ex; \
 #############################
 FROM python:3.12-slim-bookworm
 
+# Copy installed Python packages and FRP client from the builder.
+COPY --from=builder /usr/local/ /usr/local/
+
 # Install any runtime apt packages your app needs.
 RUN apt-get update && apt-get install -y curl procps && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy installed Python packages and FRP client from the builder.
-COPY --from=builder /usr/local/ /usr/local/
-# Copy application files and scripts from the builder.
-COPY --from=builder /ex_app/ /ex_app/
-COPY --from=builder /healthcheck.sh /healthcheck.sh
-COPY --from=builder /start.sh /start.sh
+# Add application files.
+ADD /ex_app/cs[s] /ex_app/css
+ADD /ex_app/im[g] /ex_app/img
+ADD /ex_app/j[s] /ex_app/js
+ADD /ex_app/l10[n] /ex_app/l10n
+ADD /ex_app/li[b] /ex_app/lib
+
+# Copy scripts with the proper permissions.
+COPY --chmod=775 healthcheck.sh /
+COPY --chmod=775 start.sh /
 
 # Set working directory and define entrypoint/healthcheck.
 WORKDIR /ex_app/lib
