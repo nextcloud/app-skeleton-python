@@ -31,7 +31,7 @@ help:
 .PHONY: build-push
 build-push:
 	docker login ghcr.io
-	docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag ghcr.io/nextcloud/app-skeleton-python:latest .
+	DOCKER_BUILDKIT=1 docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag ghcr.io/nextcloud/app-skeleton-python:latest .
 
 .PHONY: run30
 run29:

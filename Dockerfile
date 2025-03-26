@@ -1,4 +1,4 @@
-FROM python:3.11-slim-bookworm
+FROM python:3.12-slim-bookworm
 
 RUN apt-get update && apt-get install -y curl procps && \
     apt-get clean && \
@@ -6,8 +6,8 @@ RUN apt-get update && apt-get install -y curl procps && \
 
 COPY requirements.txt /
 
-RUN \
-  python3 -m pip install -r requirements.txt && rm -rf ~/.cache && rm requirements.txt
+RUN --mount=type=cache,target=/root/.cache/pip \
+  python3 -m pip install -r requirements.txt && rm requirements.txt
 
 ADD /ex_app/cs[s] /ex_app/css
 ADD /ex_app/im[g] /ex_app/img
