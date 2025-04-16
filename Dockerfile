@@ -53,5 +53,5 @@ COPY --chmod=775 start.sh /
 
 # Set working directory and define entrypoint/healthcheck.
 WORKDIR /ex_app/lib
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/start.sh", "python3", "main.py"]
 HEALTHCHECK --interval=2s --timeout=2s --retries=300 CMD /healthcheck.sh
