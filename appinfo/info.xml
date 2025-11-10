@@ -6,7 +6,7 @@
 	<description>
 	<![CDATA[Simplest skeleton of the Nextcloud application written in python]]>
 	</description>
-	<version>3.0.1</version>
+	<version>3.0.2</version>
 	<licence>MIT</licence>
 	<author mail="bigcat88@icloud.com" homepage="https://github.com/bigcat88">Alexander Piskun</author>
 	<namespace>PyAppV2_skeleton</namespace>
@@ -15,7 +15,7 @@
 	<bugs>https://github.com/nextcloud/app-skeleton-python/issues</bugs>
 	<repository type="git">https://github.com/nextcloud/app-skeleton-python</repository>
 	<dependencies>
-		<nextcloud min-version="29" max-version="32"/>
+		<nextcloud min-version="30" max-version="33"/>
 	</dependencies>
 	<external-app>
 		<docker-install>
