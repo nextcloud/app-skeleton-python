@@ -14,9 +14,9 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 # Download and install FRP client with checksum verification
 # FRP version and checksums - update these when upgrading
-ARG FRP_VERSION=0.61.1
-ARG FRP_AMD64_SHA256=bff260b68ca7b1461182a46c4f34e9709ba32764eed30a15dd94ac97f50a2c40
-ARG FRP_ARM64_SHA256=af6366f2b43920ebfe6235dba6060770399ed1fb18601e5818552bd46a7621f8
+ARG FRP_VERSION=0.71.1
+ARG FRP_AMD64_SHA256=1d9875210972a5d1a62b2dc4c48df45ab0af05d3ca1b5e494a014428259df803
+ARG FRP_ARM64_SHA256=8edf590b0c396fa42f9c147121a76af83cfc2002b08f5aef0ea1008c43482019
 
 RUN set -ex; \
     ARCH=$(uname -m); \
